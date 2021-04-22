@@ -15,7 +15,7 @@ class SubscriberTest extends TestCase
     public function test_create_subscriber_return_false_for_non_existing_topic()
     {
         //make request to non existing topic 
-        $response = $this->postJson('/api/subscribe/1', ['url' => 'http://127.0.0.1:8001']);
+        $response = $this->postJson('/api/subscribe/1', ['url' => 'http://127.0.0.1:9000/api/test1']);
 
         //check if response status is false and status code is 422
         $response->assertStatus(422)->assertJson([
@@ -32,7 +32,8 @@ class SubscriberTest extends TestCase
         ]);
 
         //subscribe to created topic
-        $response = $this->postJson('/api/subscribe/' . $topic->id, ['url' => 'http://127.0.0.1:8001']);
+        $response = $this->postJson('/api/subscribe/' . $topic->id, ['url' => 'http://127.0.0.1:9000/api/test1']);
+
 
         //assert that the creation was successful and respinse contains topic title
         $response->assertStatus(201)->assertJson([
