@@ -88,6 +88,8 @@ class PublisherTest extends TestCase
                 //response from subscribers
                 $response = json_decode($response->getBody()->getContents(), TRUE);
 
+
+                //assert that the response contains true
                 $this->assertContains(true, $response);
             }
         }
